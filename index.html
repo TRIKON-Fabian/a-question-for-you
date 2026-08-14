@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>A Question For You ♥</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💌</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Karla:ital,wght@0,300..700;1,300..700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fdf6ee;
+  --ink:#432432;
+  --rose:#c9184a;
+  --rose-deep:#a4133c;
+  --rose-soft:#ffb3c1;
+  --blush:#fff0f3;
+  --gold:#c98d18;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:'Karla',sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  overflow:hidden;
+  position:relative;
+}
+/* ---------- atmosphere ---------- */
+.bg-blob{position:fixed;border-radius:50%;filter:blur(90px);opacity:.55;pointer-events:none;z-index:0}
+.blob-1{width:55vmax;height:55vmax;background:radial-gradient(circle,#ffccd5,transparent 70%);top:-20vmax;left:-15vmax;animation:drift 26s ease-in-out infinite alternate}
+.blob-2{width:45vmax;height:45vmax;background:radial-gradient(circle,#ffe5d9,transparent 70%);bottom:-18vmax;right:-12vmax;animation:drift 32s ease-in-out infinite alternate-reverse}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(6vmax,-4vmax) scale(1.15)}}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.26 0 0 0 0 0.14 0 0 0 0 0.19 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E")}
+#hearts{position:fixed;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.h{position:absolute;bottom:-8vh;animation:rise linear forwards;will-change:transform,opacity}
+@keyframes rise{
+  0%{transform:translateY(0) translateX(0) rotate(0deg) scale(1);opacity:0}
+  8%{opacity:.85}
+  100%{transform:translateY(-115vh) translateX(var(--sway)) rotate(var(--spin)) scale(var(--endscale));opacity:0}
+}
+/* ---------- layout ---------- */
+.stage{position:relative;z-index:3;height:100%;display:grid;place-items:center;padding:24px}
+.screen{
+  display:none;text-align:center;max-width:680px;width:100%;
+}
+.screen.active{display:block;animation:reveal .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes reveal{from{opacity:0;transform:translateY(26px) scale(.97)}to{opacity:1;transform:none}}
+.kicker{
+  font-family:'Caveat',cursive;font-size:clamp(1.4rem,3.5vw,1.9rem);color:var(--rose);
+  animation:reveal .8s .1s cubic-bezier(.2,.8,.2,1) both;
+}
+h1{
+  font-family:'Fraunces',serif;font-weight:600;font-style:italic;
+  font-size:clamp(2.4rem,7.5vw,4.6rem);line-height:1.08;margin:.4em 0 .9em;
+  letter-spacing:-.01em;
+  animation:reveal .8s .25s cubic-bezier(.2,.8,.2,1) both;
+}
+h1 .accent{color:var(--rose);position:relative;white-space:nowrap}
+h1 .accent::after{
+  content:"";position:absolute;left:0;right:0;bottom:.02em;height:.14em;border-radius:99px;
+  background:linear-gradient(90deg,var(--rose-soft),var(--rose));opacity:.5;
+  transform:scaleX(0);transform-origin:left;animation:underline .9s 1s cubic-bezier(.2,.8,.2,1) forwards;
+}
+@keyframes underline{to{transform:scaleX(1)}}
+.sub{font-size:clamp(1rem,2.5vw,1.15rem);opacity:.75;margin-bottom:2.2em;animation:reveal .8s .4s cubic-bezier(.2,.8,.2,1) both}
+/* ---------- buttons ---------- */
+.btn-row{display:flex;gap:22px;justify-content:center;align-items:center;flex-wrap:wrap;animation:reveal .8s .55s cubic-bezier(.2,.8,.2,1) both}
+button{font-family:'Karla',sans-serif;cursor:pointer;border:none;transition:transform .18s ease,box-shadow .18s ease}
+.btn-yes{
+  background:linear-gradient(135deg,var(--rose),var(--rose-deep));color:#fff;
+  font-weight:700;letter-spacing:.03em;
+  padding:.85em 2.2em;border-radius:99px;
+  box-shadow:0 10px 30px rgba(201,24,74,.35),inset 0 1px 0 rgba(255,255,255,.25);
+  transition:font-size .45s cubic-bezier(.34,1.56,.64,1),padding .45s cubic-bezier(.34,1.56,.64,1),transform .18s ease,box-shadow .3s ease;
+  animation:heartbeat 1.6s ease-in-out infinite;
+}
+@keyframes heartbeat{0%,100%{transform:scale(1)}12%{transform:scale(1.05)}24%{transform:scale(1)}36%{transform:scale(1.04)}}
+.btn-yes:hover{box-shadow:0 14px 40px rgba(201,24,74,.5),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn-no{
+  background:transparent;color:var(--ink);opacity:.65;font-weight:600;
+  padding:.8em 1.6em;border-radius:99px;border:2px solid rgba(67,36,50,.28);
+  transition:font-size .45s ease,padding .45s ease,opacity .3s ease,transform .18s ease;
+}
+.btn-no:hover{opacity:.9;transform:translateY(-2px)}
+/* ---------- date idea cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-top:.5em}
+.card{
+  background:rgba(255,255,255,.72);backdrop-filter:blur(6px);
+  border:1.5px solid rgba(201,24,74,.15);border-radius:22px;
+  padding:26px 14px 22px;display:flex;flex-direction:column;gap:10px;align-items:center;
+  box-shadow:0 6px 22px rgba(67,36,50,.07);
+  opacity:0;animation:reveal .7s cubic-bezier(.2,.8,.2,1) forwards;
+}
+.card:nth-child(1){animation-delay:.15s}.card:nth-child(2){animation-delay:.28s}
+.card:nth-child(3){animation-delay:.41s}.card:nth-child(4){animation-delay:.54s}
+.card:nth-child(5){animation-delay:.67s}
+.card:hover{transform:translateY(-6px) rotate(-1deg);box-shadow:0 16px 34px rgba(201,24,74,.18);border-color:var(--rose)}
+.card .emoji{font-size:2.4rem;filter:drop-shadow(0 4px 8px rgba(67,36,50,.15))}
+.card .name{font-weight:700;font-size:1rem;color:var(--ink)}
+.card .desc{font-size:.8rem;opacity:.6;line-height:1.35}
+/* ---------- date picker ---------- */
+.pick-wrap{
+  display:flex;flex-direction:column;gap:18px;align-items:center;
+  animation:reveal .8s .3s cubic-bezier(.2,.8,.2,1) both;
+}
+input[type="date"]{
+  font-family:'Fraunces',serif;font-size:1.35rem;color:var(--ink);
+  background:rgba(255,255,255,.85);border:2px solid rgba(201,24,74,.3);border-radius:18px;
+  padding:.7em 1em;outline:none;box-shadow:0 6px 22px rgba(67,36,50,.08);
+  transition:border-color .2s ease;
+}
+input[type="date"]:focus{border-color:var(--rose)}
+.btn-send{
+  background:linear-gradient(135deg,var(--rose),var(--rose-deep));color:#fff;
+  font-weight:700;font-size:1.1rem;letter-spacing:.03em;
+  padding:.9em 2.6em;border-radius:99px;
+  box-shadow:0 10px 30px rgba(201,24,74,.35);
+}
+.btn-send:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(201,24,74,.5)}
+.btn-send:disabled{opacity:.5;cursor:wait;transform:none}
+.note{font-size:.85rem;opacity:.55}
+/* ---------- final ---------- */
+.big-heart{font-size:clamp(4rem,14vw,7rem);animation:heartbeat 1.4s ease-in-out infinite;display:inline-block;margin-bottom:.15em}
+.summary{
+  font-family:'Fraunces',serif;font-style:italic;font-size:clamp(1.2rem,3.4vw,1.6rem);
+  margin-top:.8em;line-height:1.5;
+}
+.summary b{color:var(--rose)}
+.mail-fallback{margin-top:1.6em;display:none}
+.mail-fallback a{color:var(--rose);font-weight:700}
+@media (max-width:520px){
+  .btn-row{flex-direction:column-reverse}
+  .cards{grid-template-columns:repeat(2,1fr)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+}
+</style>
+</head>
+<body>
+<div class="bg-blob blob-1"></div>
+<div class="bg-blob blob-2"></div>
+<div class="grain"></div>
+<div id="hearts"></div>
+
+<main class="stage">
+
+  <!-- 1 · the question -->
+  <section class="screen active" id="s-question">
+    <div class="kicker">psst… I have a question</div>
+    <h1>Will you <span class="accent">go&nbsp;out</span> with&nbsp;me?</h1>
+    <p class="sub">Choose wisely. One of these buttons is clearly better than the other.</p>
+    <div class="btn-row">
+      <button class="btn-no" id="btn-no">No</button>
+      <button class="btn-yes" id="btn-yes">Yes! 💘</button>
+    </div>
+  </section>
+
+  <!-- 2 · date ideas -->
+  <section class="screen" id="s-ideas">
+    <div class="kicker">I knew it 😌</div>
+    <h1>Pick our <span class="accent">perfect&nbsp;date</span></h1>
+    <div class="cards" id="cards">
+      <button class="card" data-idea="Candlelight dinner"><span class="emoji">🍝</span><span class="name">Candlelight Dinner</span><span class="desc">Good food, better company</span></button>
+      <button class="card" data-idea="Cinema night"><span class="emoji">🎬</span><span class="name">Cinema Night</span><span class="desc">Popcorn is on me</span></button>
+      <button class="card" data-idea="Sunset picnic"><span class="emoji">🧺</span><span class="name">Sunset Picnic</span><span class="desc">Blanket, snacks, golden hour</span></button>
+      <button class="card" data-idea="Stargazing"><span class="emoji">✨</span><span class="name">Stargazing</span><span class="desc">You, me & the universe</span></button>
+      <button class="card" data-idea="Surprise me"><span class="emoji">🎁</span><span class="name">Surprise Me</span><span class="desc">I trust you… mostly</span></button>
+    </div>
+  </section>
+
+  <!-- 3 · pick the day -->
+  <section class="screen" id="s-when">
+    <div class="kicker" id="idea-echo">Great choice!</div>
+    <h1>When are you <span class="accent">free</span> for me?</h1>
+    <div class="pick-wrap">
+      <input type="date" id="date-input" aria-label="Pick a date">
+      <button class="btn-send" id="btn-send">Seal the deal 💌</button>
+      <div class="note">Your answer flies straight to my inbox.</div>
+    </div>
+  </section>
+
+  <!-- 4 · done -->
+  <section class="screen" id="s-done">
+    <span class="big-heart">❤️</span>
+    <h1>It's a <span class="accent">date!</span></h1>
+    <p class="summary" id="final-summary"></p>
+    <p class="sub" style="margin-top:1.2em">I'll take care of everything else. Can't wait. 🥰</p>
+    <div class="mail-fallback" id="mail-fallback">
+      <p class="note">Hmm, the messenger pigeon got lost — tap below to send it yourself:</p>
+      <a id="mailto-link" href="#">Send by mail instead 💌</a>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  var TARGET = "aster.fabian@gmail.com";
+  var ENDPOINT = "https://formsubmit.co/ajax/" + TARGET;
+
+  var state = { idea:"", date:"", noClicks:0 };
+
+  function show(id){
+    document.querySelectorAll(".screen").forEach(function(s){ s.classList.remove("active"); });
+    document.getElementById(id).classList.add("active");
+  }
+
+  /* ---- floating hearts ---- */
+  var HEART_CHARS = ["❤️","💖","💘","🌹","💕"];
+  function spawnHeart(burst){
+    var h = document.createElement("span");
+    h.className = "h";
+    h.textContent = HEART_CHARS[Math.floor(Math.random()*HEART_CHARS.length)];
+    h.style.left = (Math.random()*100) + "vw";
+    h.style.fontSize = (0.8 + Math.random()*1.6) + "rem";
+    h.style.setProperty("--sway", (Math.random()*16-8) + "vw");
+    h.style.setProperty("--spin", (Math.random()*60-30) + "deg");
+    h.style.setProperty("--endscale", (0.6 + Math.random()*0.9).toFixed(2));
+    var dur = burst ? (2.5 + Math.random()*2) : (7 + Math.random()*7);
+    h.style.animationDuration = dur + "s";
+    document.getElementById("hearts").appendChild(h);
+    setTimeout(function(){ h.remove(); }, dur*1000);
+  }
+  setInterval(function(){ spawnHeart(false); }, 1400);
+  for(var i=0;i<6;i++) spawnHeart(false);
+  function heartBurst(n){ for(var i=0;i<n;i++) setTimeout(spawnHeart.bind(null,true), i*60); }
+
+  /* ---- screen 1: yes grows on every no ---- */
+  var yesBtn = document.getElementById("btn-yes");
+  var noBtn  = document.getElementById("btn-no");
+  var NO_LABELS = ["No","Are you sure?","Really sure?","Think again!","Last chance!","You're breaking my heart 💔","I'll cook for you!","Okay, I'll keep asking…"];
+  noBtn.addEventListener("click", function(){
+    state.noClicks++;
+    var n = state.noClicks;
+    yesBtn.style.fontSize = (1 + n*0.45) + "rem";
+    yesBtn.style.padding  = (0.85 + n*0.12) + "em " + (2.2 + n*0.3) + "em";
+    noBtn.style.fontSize  = Math.max(0.55, 1 - n*0.08) + "rem";
+    noBtn.style.opacity   = Math.max(0.3, 0.65 - n*0.05);
+    noBtn.textContent     = NO_LABELS[Math.min(n, NO_LABELS.length-1)];
+    if(n >= 3){
+      var dx = Math.random()*120-60, dy = Math.random()*60-30;
+      noBtn.style.transform = "translate(" + dx + "px," + dy + "px)";
+    }
+  });
+  yesBtn.addEventListener("click", function(){
+    heartBurst(18);
+    show("s-ideas");
+  });
+
+  /* ---- screen 2: date ideas ---- */
+  document.getElementById("cards").addEventListener("click", function(e){
+    var card = e.target.closest(".card");
+    if(!card) return;
+    state.idea = card.dataset.idea;
+    document.getElementById("idea-echo").textContent = card.querySelector(".emoji").textContent + " " + state.idea + " — excellent taste!";
+    heartBurst(8);
+    show("s-when");
+  });
+
+  /* ---- screen 3: date + send ---- */
+  var dateInput = document.getElementById("date-input");
+  var today = new Date();
+  dateInput.min = today.toISOString().slice(0,10);
+  var sendBtn = document.getElementById("btn-send");
+
+  function prettyDate(iso){
+    try{
+      return new Date(iso + "T12:00:00").toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+    }catch(e){ return iso; }
+  }
+
+  sendBtn.addEventListener("click", function(){
+    if(!dateInput.value){
+      dateInput.style.borderColor = "var(--rose-deep)";
+      dateInput.animate([{transform:"translateX(0)"},{transform:"translateX(-8px)"},{transform:"translateX(8px)"},{transform:"translateX(0)"}],{duration:280});
+      return;
+    }
+    state.date = dateInput.value;
+    sendBtn.disabled = true;
+    sendBtn.textContent = "Sending…";
+
+    var pretty = prettyDate(state.date);
+    var payload = {
+      _subject: "💘 She said YES — " + state.idea + " on " + pretty,
+      _template: "table",
+      _captcha: "false",
+      Answer: "YES 💘",
+      "Date idea": state.idea,
+      "Chosen day": pretty,
+      "Times she clicked no first": String(state.noClicks)
+    };
+
+    function finish(ok){
+      document.getElementById("final-summary").innerHTML =
+        "<b>" + state.idea + "</b><br>" + pretty;
+      if(!ok){
+        var body = "YES! Date idea: " + state.idea + " on " + pretty;
+        var link = document.getElementById("mailto-link");
+        link.href = "mailto:" + TARGET + "?subject=" + encodeURIComponent("She said YES 💘") + "&body=" + encodeURIComponent(body);
+        document.getElementById("mail-fallback").style.display = "block";
+      }
+      heartBurst(30);
+      show("s-done");
+    }
+
+    fetch(ENDPOINT, {
+      method:"POST",
+      headers:{ "Content-Type":"application/json", "Accept":"application/json" },
+      body: JSON.stringify(payload)
+    }).then(function(r){ return r.json(); })
+      .then(function(d){ finish(d && (d.success === "true" || d.success === true)); })
+      .catch(function(){ finish(false); });
+  });
+})();
+</script>
+</body>
+</html>
