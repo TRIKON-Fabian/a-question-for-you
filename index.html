@@ -115,6 +115,36 @@ h1 .accent{
   position:relative;animation:reveal .9s .45s both;
 }
 .divider::after{content:"➳";position:absolute;top:-.8em;left:50%;transform:translateX(-50%);color:var(--flame);font-size:1rem}
+/* ---------- reaping notice ---------- */
+.notice{
+  position:relative;display:inline-block;text-align:center;
+  background:linear-gradient(170deg,#f5eedb,#e9dcbc 80%,#ddcda6);
+  color:#33241a;border:1.5px solid #b98c4f;border-radius:6px;
+  padding:30px 38px 26px;max-width:440px;margin:.5em auto 1.8em;
+  box-shadow:0 18px 50px rgba(0,0,0,.55),inset 0 0 40px rgba(185,140,79,.18);
+  transform:rotate(-1.5deg);
+  animation:reveal .9s .25s cubic-bezier(.2,.8,.2,1) both;
+}
+.notice::before{
+  content:"";position:absolute;inset:7px;border:1px solid rgba(122,84,40,.45);border-radius:3px;pointer-events:none;
+}
+.notice-head{font-family:'Cinzel',serif;font-weight:900;font-size:clamp(1.3rem,3.6vw,1.7rem);letter-spacing:.14em;text-transform:uppercase}
+.notice-sub{font-size:.95rem;font-style:italic;opacity:.75;margin-top:.35em}
+.notice-line{width:70%;height:1px;margin:.9em auto;background:linear-gradient(90deg,transparent,#7a5428,transparent)}
+.name-drawn{
+  font-family:'Cinzel',serif;font-weight:900;font-size:clamp(2.2rem,7vw,3.2rem);letter-spacing:.22em;
+  color:#5c1f16;text-shadow:0 1px 0 rgba(255,255,255,.4);
+}
+.notice-foot{font-size:.85rem;font-style:italic;opacity:.7;margin-top:.9em}
+.stamp{
+  position:absolute;top:-14px;right:-18px;
+  font-family:'Cinzel',serif;font-weight:700;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(170,40,30,.85);border:2.5px solid rgba(170,40,30,.7);border-radius:50%;
+  width:74px;height:74px;display:grid;place-items:center;
+  transform:rotate(14deg);background:rgba(245,238,219,.9);
+  box-shadow:0 6px 16px rgba(0,0,0,.35);
+}
+.btn-forward{animation:reveal .9s .5s cubic-bezier(.2,.8,.2,1) both,pulseglow 2s ease-in-out infinite}
 /* ---------- envelope intro ---------- */
 .envelope{
   cursor:pointer;display:inline-block;font-size:clamp(4.5rem,15vw,7rem);
@@ -214,13 +244,19 @@ input[type="date"]:focus{border-color:var(--flame);box-shadow:var(--glow)}
 
 <main class="stage">
 
-  <!-- 0 · the letter -->
+  <!-- 0 · the reaping -->
   <section class="screen active" id="s-letter">
-    <div class="kicker">Attention, tribute Lara 📢</div>
-    <h1>You have been <span class="accent">chosen</span></h1>
-    <p class="sub">Delivered by neither owl nor sparkly vampire — just Wi-Fi. Tap to open.</p>
-    <button class="envelope" id="btn-open" aria-label="Open the letter">💌</button>
-    <div class="wax">~ may the odds be ever in your favor ~</div>
+    <div class="kicker">Ladies first — as is tradition 📜</div>
+    <div class="notice">
+      <div class="notice-head">The Date Games</div>
+      <div class="notice-sub">Official Tribute Selection · One name has been drawn</div>
+      <div class="notice-line"></div>
+      <div class="name-drawn">LARA</div>
+      <div class="notice-foot">District: Kitsch Mountain · Approved by the Gamemaker, Fabian</div>
+      <div class="stamp">Official</div>
+    </div>
+    <button class="btn-yes btn-forward" id="btn-open">Step forward, tribute 🔥</button>
+    <div class="wax">~ may the odds be ever in your favor ~ 🍎</div>
   </section>
 
   <!-- 1 · the question -->
