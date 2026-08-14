@@ -102,7 +102,7 @@ h1 .accent{
 button{font-family:'Cinzel',serif;cursor:pointer;border:none;transition:transform .18s ease,box-shadow .18s ease}
 .btn-yes{
   background:linear-gradient(160deg,var(--gold-bright),var(--gold) 55%,#c2933a);
-  color:#3a2b06;font-weight:700;letter-spacing:.06em;
+  color:#3a2b06;font-weight:700;letter-spacing:.06em;font-size:1.15rem;
   padding:.85em 2.1em;border-radius:14px;
   border:1px solid rgba(255,235,190,.8);
   box-shadow:var(--glow),inset 0 1px 0 rgba(255,255,255,.6);
@@ -112,7 +112,7 @@ button{font-family:'Cinzel',serif;cursor:pointer;border:none;transition:transfor
 @keyframes pulseglow{0%,100%{box-shadow:0 0 14px rgba(232,190,106,.45),0 0 40px rgba(232,190,106,.2)}50%{box-shadow:0 0 26px rgba(232,190,106,.75),0 0 70px rgba(232,190,106,.35)}}
 .btn-yes:hover{transform:translateY(-3px)}
 .btn-no{
-  background:rgba(246,234,210,.06);color:var(--parchment);opacity:.75;font-weight:500;
+  background:rgba(246,234,210,.06);color:var(--parchment);opacity:.75;font-weight:500;font-size:1.05rem;
   padding:.8em 1.6em;border-radius:14px;border:1.5px solid rgba(246,234,210,.35);
   transition:font-size .5s ease,padding .5s ease,opacity .3s ease,transform .3s ease;
 }
@@ -326,7 +326,7 @@ input[type="date"]:focus{border-color:var(--gold);box-shadow:var(--glow)}
   noBtn.addEventListener("click", function(){
     state.noClicks++;
     var n = state.noClicks;
-    yesBtn.style.fontSize = (1 + n*0.45) + "rem";
+    yesBtn.style.fontSize = (1.15 + n*0.45) + "rem";
     yesBtn.style.padding  = (0.85 + n*0.12) + "em " + (2.1 + n*0.3) + "em";
     noBtn.style.fontSize  = Math.max(0.55, 1 - n*0.08) + "rem";
     noBtn.style.opacity   = Math.max(0.3, 0.75 - n*0.06);
