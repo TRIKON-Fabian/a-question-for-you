@@ -85,9 +85,13 @@ body{
   100%{transform:translate(var(--dx),var(--dy)) rotate(var(--spin)) scale(var(--endscale));opacity:0}
 }
 /* ---------- layout ---------- */
-.stage{position:relative;z-index:4;height:100%;display:grid;place-items:center;padding:24px}
+.stage{
+  position:relative;z-index:4;display:flex;padding:20px;
+  height:100vh;height:100dvh;
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+}
 .screen{display:none;text-align:center;max-width:720px;width:100%}
-.screen.active{display:block;animation:reveal .9s cubic-bezier(.2,.8,.2,1) both}
+.screen.active{display:block;margin:auto;padding:14px 0;animation:reveal .9s cubic-bezier(.2,.8,.2,1) both}
 @keyframes reveal{from{opacity:0;transform:translateY(30px) scale(.97)}to{opacity:1;transform:none}}
 .kicker{
   font-family:'Caveat',cursive;font-size:clamp(1.5rem,3.8vw,2rem);color:var(--flame-bright);
@@ -225,9 +229,23 @@ input[type="date"]:focus{border-color:var(--flame);box-shadow:var(--glow)}
 .mail-fallback{margin-top:1.6em;display:none}
 .mail-fallback a{color:var(--flame);font-weight:600}
 @media (max-width:520px){
-  .btn-row{flex-direction:column-reverse}
-  .cards{grid-template-columns:repeat(2,1fr)}
-  .moon{width:48px;height:48px;top:4vh}
+  .btn-row{flex-direction:column-reverse;gap:16px}
+  .btn-yes{font-size:1.25rem;padding:.95em 2.4em}
+  .cards{grid-template-columns:repeat(2,1fr);gap:10px}
+  .card{padding:16px 10px 14px;gap:7px}
+  .card .emoji{font-size:1.9rem}
+  .card .name{font-size:.85rem}
+  .card .desc{font-size:.85rem}
+  .moon{width:44px;height:44px;top:3vh;right:6vw}
+  .notice{padding:22px 18px 18px;max-width:100%}
+  .notice-head{letter-spacing:.09em}
+  .name-drawn{letter-spacing:.14em}
+  .stamp{width:60px;height:60px;font-size:.58rem;top:-10px;right:-6px}
+  h1{margin:.4em 0 .55em}
+  .sub{margin-bottom:1.5em}
+  .divider{margin-bottom:1.5em}
+  .trees{height:18vh}
+  .trees-back{height:21vh}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
@@ -418,7 +436,8 @@ input[type="date"]:focus{border-color:var(--flame);box-shadow:var(--glow)}
     noBtn.textContent     = NO_LABELS[Math.min(n, NO_LABELS.length-1)];
     burstAt(yesBtn, 4, CHARS_FIRE);
     if(n >= 3){
-      var dx = Math.random()*120-60, dy = Math.random()*60-30;
+      var m = window.innerWidth < 520 ? 0.55 : 1;
+      var dx = (Math.random()*120-60)*m, dy = (Math.random()*50-25)*m;
       noBtn.style.transform = "translate(" + dx + "px," + dy + "px)";
     }
   });
